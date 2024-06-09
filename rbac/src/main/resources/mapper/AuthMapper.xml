@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmxstudy.rbac.mapper.AuthMapper">
+
+    <resultMap id="BaseResultMap" type="com.zmxstudy.rbac.entity.Auth">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="pid" column="pid" jdbcType="BIGINT"/>
+            <result property="countSub" column="count_sub" jdbcType="INTEGER"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
+            <result property="type" column="type" jdbcType="CHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="path" column="path" jdbcType="VARCHAR"/>
+            <result property="redirect" column="redirect" jdbcType="VARCHAR"/>
+            <result property="component" column="component" jdbcType="VARCHAR"/>
+            <result property="metaIcon" column="meta_icon" jdbcType="VARCHAR"/>
+            <result property="metaTitle" column="meta_title" jdbcType="VARCHAR"/>
+            <result property="permission" column="permission" jdbcType="VARCHAR"/>
+            <result property="href" column="href" jdbcType="VARCHAR"/>
+            <result property="isHidden" column="is_hidden" jdbcType="BIT"/>
+            <result property="uri" column="uri" jdbcType="VARCHAR"/>
+            <result property="module" column="module" jdbcType="VARCHAR"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="BIT"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,pid,count_sub,
+        sort,type,name,
+        path,redirect,component,
+        meta_icon,meta_title,permission,
+        href,is_hidden,uri,
+        module,is_deleted,create_by,
+        update_by,create_time,update_time
+    </sql>
+</mapper>
