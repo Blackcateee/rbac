@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zmxstudy.rbac.entity.Auth;
 import com.zmxstudy.rbac.entity.Role;
 import com.zmxstudy.rbac.entity.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -44,4 +45,12 @@ public interface UserService extends IService<User> {
      * @return /
      */
     boolean editRoles(String username, List<Long> roleIds);
+
+    boolean register(User user);
+
+    boolean editUser(User user);
+
+    String avatarUpload(String userName, MultipartFile file)  throws Exception;
+
+    boolean logout(String username);
 }

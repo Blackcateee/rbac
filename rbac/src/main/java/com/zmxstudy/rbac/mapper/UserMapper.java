@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zmxstudy.rbac.entity.Auth;
 import com.zmxstudy.rbac.entity.Role;
 import com.zmxstudy.rbac.entity.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -63,6 +60,23 @@ public interface UserMapper extends BaseMapper<User> {
             "</foreach>" +
             "</script>")
     boolean insertRolesBatch(@Param("userId") Long userId, @Param("roleIds") List<Long> roleIds);
+
+    @Insert("insert into " +
+            "user(username, password, nickname, gender, phone, email, avatar_path, is_deleted, status, pwd_reset_time, create_by, update_by) " +
+            "values(#{username}, #{password}, #{nickname}, #{gender}, #{phone}, #{email}, #{avatarPath}, #{isDeleted}, #{status}, NOW(), #{username}, #{username})")
+    boolean insertUser(User user);
+
+    @Update("<script>" +
+            "update user set " +
+            "<if test='password != null'> password = #{password}, </if>" +
+            "<if test='avatarPath != null'> avatar_path = #{avatarPath}, </if>" +
+            "<if test='nickname != null'> nickname = #{nickname}, </if>" +
+            "<if test='phone != null'> phone = #{phone}, </if>" +
+            "<if test='email != null'> email = #{email}, </if>" +
+            "update_by = #{username}" +
+            "where username = #{username}" +
+            "</script>")
+    boolean editUser(User user);
 }
 
 
