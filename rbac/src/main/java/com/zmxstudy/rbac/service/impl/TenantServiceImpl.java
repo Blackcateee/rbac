@@ -7,7 +7,10 @@ import com.zmxstudy.rbac.mapper.TenantMapper;
 import com.zmxstudy.rbac.mapper.UserMapper;
 import com.zmxstudy.rbac.service.TenantServise;
 import com.zmxstudy.rbac.service.UserService;
+import jakarta.annotation.Resource;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,7 +21,12 @@ import java.util.List;
 @Service
 public class TenantServiceImpl extends ServiceImpl<TenantMapper, tenant>
         implements TenantServise {
-
+    @Resource
+    public PasswordEncoder passwordEncoder;
+    @Resource
+    public UserServiceImpl userServiceimpl;
+    @Resource
+    public UserMapper userMapper;
     @Override
     public List<tenant> gettenants() {
         List<tenant> tenants = baseMapper.selectAllByID();
@@ -42,8 +50,21 @@ public class TenantServiceImpl extends ServiceImpl<TenantMapper, tenant>
         tenant.setIsDeleted(true);
         tenant.setStatus(1);
         tenant.setCreateBy("admin");
+        tenant.setPassword(tenant.getPassword());
         tenant.setCreateTime(Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-        boolean b = baseMapper.insertTenant(tenant);
+        //把商家注册到用户表
+        User u=new User();
+        u.setIsDeleted(tenant.getIsDeleted());
+        u.setCreateTime(tenant.getCreateTime());
+        u.setCreateBy(tenant.getCreateBy());
+        u.setAvatarPath(tenant.getAvatarPath());
+        u.setStatus(1);
+        u.setEmail(tenant.getEmail());
+        u.setPassword(tenant.getPassword());
+        u.setPhone(tenant.getPhone());
+        userServiceimpl.register(u);
+        baseMapper.insertTenant(tenant) ;
+        userMapper.editUser()
         return b;
     }
 
