@@ -1,13 +1,24 @@
 package com.zmxstudy.rbac.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zmxstudy.rbac.constant.SecurityConstant;
 import com.zmxstudy.rbac.entity.Role;
+import com.zmxstudy.rbac.entity.User;
 import com.zmxstudy.rbac.mapper.RoleMapper;
 import com.zmxstudy.rbac.service.RoleService;
+import com.zmxstudy.rbac.util.JwtUtil;
+import com.zmxstudy.rbac.util.RedisUtil;
+import jakarta.annotation.Resource;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author star
@@ -29,6 +40,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role>
         baseMapper.deleteAuthsByRoleId(roleId);
         baseMapper.insertRolesBatch(roleId, authIds);
         return true;
+    }
+
+    @Override
+    public boolean login(User user) {
+        return false;
     }
 }
 

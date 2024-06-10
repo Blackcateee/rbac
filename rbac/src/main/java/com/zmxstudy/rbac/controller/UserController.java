@@ -5,6 +5,7 @@ import com.zmxstudy.rbac.entity.Auth;
 import com.zmxstudy.rbac.entity.Role;
 import com.zmxstudy.rbac.entity.User;
 import com.zmxstudy.rbac.service.UserService;
+import com.zmxstudy.rbac.vo.Result;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,28 +61,4 @@ public class UserController extends BaseController<UserService, User> {
         return baseService.editRoles(username, roleIds);
     }
 
-    /**
-     * 根据用户名修改用户角色列表
-     *
-     * @param username 用户名
-     * @param roleIds  新的用户角色列表
-     * @return /
-     */
-    // 待实现
-
-    /**
-     * 根据用户名获取用户岗位列表
-     *
-     * @param username 用户名
-     * @return 用户岗位列表
-     */
-    // 待实现
-
-    /**
-     * 根据用户名获取用户部门列表
-     *
-     * @param username 用户名
-     * @return 用户部门列表
-     */
-    // 待实现
 }

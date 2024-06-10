@@ -8,6 +8,8 @@ import com.zmxstudy.rbac.entity.Role;
 import com.zmxstudy.rbac.entity.User;
 import com.zmxstudy.rbac.mapper.UserMapper;
 import com.zmxstudy.rbac.service.UserService;
+import jakarta.annotation.Resource;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
