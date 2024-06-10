@@ -5,6 +5,7 @@ import com.zmxstudy.rbac.entity.Role;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -25,6 +26,9 @@ public interface RoleMapper extends BaseMapper<Role> {
             "</foreach>" +
             "</script>")
     boolean insertRolesBatch(@Param("roleId") Long roleId, @Param("authIds") List<Long> authIds);
+
+    @Select("select * from role")
+    List<Role> selectRoles();
 }
 
 

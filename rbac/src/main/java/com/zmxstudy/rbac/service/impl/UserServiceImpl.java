@@ -80,7 +80,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public boolean register(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return baseMapper.insertUser(user);
+        // 会员注册,需要添加会员角色
+        baseMapper.insertUser(user);
+        Long id = baseMapper.selectIdByUsername(user.getUsername());
+        // 1:管理员 2：会员 3：商家
+        baseMapper.insertRolesBatch(id, user.getRoleId());
+        return true;
     }
 
     @Override
