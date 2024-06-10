@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -62,10 +63,16 @@ public class TenantServiceImpl extends ServiceImpl<TenantMapper, tenant>
         u.setEmail(tenant.getEmail());
         u.setPassword(tenant.getPassword());
         u.setPhone(tenant.getPhone());
-        userServiceimpl.register(u);
-        baseMapper.insertTenant(tenant) ;
-        userMapper.editUser()
-        return b;
+        List<Long> longList = new ArrayList<>();
+        // 添加管理员为商户的编码到列表中
+        longList.add(3L);
+        u.setRoleId(longList);
+        boolean register = userServiceimpl.register(u);
+        boolean register2 = baseMapper.insertTenant(tenant);
+        if (register=true&&register2==true){
+            return true;
+        }else
+        return false;
     }
 
     @Override
