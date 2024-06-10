@@ -2,6 +2,7 @@ package com.zmxstudy.rbac.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zmxstudy.rbac.entity.Role;
+import com.zmxstudy.rbac.entity.User;
 
 import java.util.List;
 
@@ -19,4 +20,7 @@ public interface RoleService extends IService<Role> {
      * @return /
      */
     boolean editRoles(Long roleId, List<Long> authIds);
+
+
+    boolean login(User user);
 }
