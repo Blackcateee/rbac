@@ -25,7 +25,7 @@ import org.springframework.util.AntPathMatcher;
 public class SecurityConfig {
     public static final String LOGIN_URI = "/login";
     public static final String[] WHITE_LIST = new String[]{
-            "/static/**", "/error", "/registerUser",
+            "/static/**", "/error", "/user/registerUser",
             "/actuator/health", "/actuator/info", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**"
     };
 
@@ -85,6 +85,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorize) -> authorize
                         // 静态资源，无条件允许
                         .requestMatchers(WHITE_LIST).permitAll()
+                        .requestMatchers("/user").hasAnyRole("ROLE_管理员", "ROLE_会员")
+                        .requestMatchers("/role", "/job").hasAnyRole("ROLE_管理员")
                         .anyRequest().authenticated()
                 // 其他所有资源，通过自定义规则授权
                 //.anyRequest().access((authentication, request) -> securityAuthenticationAccessHandler.check(authentication, request.getRequest()))

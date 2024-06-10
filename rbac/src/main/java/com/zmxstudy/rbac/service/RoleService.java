@@ -20,7 +20,4 @@ public interface RoleService extends IService<Role> {
      * @return /
      */
     boolean editRoles(Long roleId, List<Long> authIds);
-
-
-    boolean login(User user);
 }

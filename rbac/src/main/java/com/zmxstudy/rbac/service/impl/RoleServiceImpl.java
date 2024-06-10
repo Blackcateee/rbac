@@ -41,11 +41,6 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role>
         baseMapper.insertRolesBatch(roleId, authIds);
         return true;
     }
-
-    @Override
-    public boolean login(User user) {
-        return false;
-    }
 }
 
 
