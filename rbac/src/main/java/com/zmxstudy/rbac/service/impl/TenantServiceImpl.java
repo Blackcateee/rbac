@@ -58,7 +58,6 @@ public class TenantServiceImpl extends ServiceImpl<TenantMapper, tenant>
         u.setIsDeleted(tenant.getIsDeleted());
         u.setCreateTime(tenant.getCreateTime());
         u.setCreateBy(tenant.getCreateBy());
-        u.setAvatarPath(tenant.getAvatarPath());
         u.setStatus(1);
         u.setEmail(tenant.getEmail());
         u.setPassword(tenant.getPassword());

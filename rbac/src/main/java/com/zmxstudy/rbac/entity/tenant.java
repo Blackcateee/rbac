@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.util.Date;
-@TableName(value ="user")
+@TableName(value ="tenant")
 @Data
 public class tenant {
     @TableId(value = "id", type = IdType.AUTO)
