@@ -25,7 +25,7 @@ import org.springframework.util.AntPathMatcher;
 public class SecurityConfig {
     public static final String LOGIN_URI = "/login";
     public static final String[] WHITE_LIST = new String[]{
-            "/static", "/error",
+            "/static/**", "/error", "/registerUser",
             "/actuator/health", "/actuator/info", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**"
     };
 

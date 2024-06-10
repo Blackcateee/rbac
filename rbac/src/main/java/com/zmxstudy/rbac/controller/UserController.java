@@ -7,6 +7,7 @@ import com.zmxstudy.rbac.entity.User;
 import com.zmxstudy.rbac.service.UserService;
 import com.zmxstudy.rbac.vo.Result;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -61,4 +62,23 @@ public class UserController extends BaseController<UserService, User> {
         return baseService.editRoles(username, roleIds);
     }
 
+    @PostMapping("/registerUser")
+    public boolean registerUser(@RequestBody User user) {
+        return baseService.register(user);
+    }
+
+    @PostMapping("/editUser")
+    public boolean editUser(@RequestHeader("username") String username, @RequestBody User user) {
+        return baseService.editUser(user);
+    }
+
+    @PostMapping("/avatarUpload")
+    public Result<String> avatarUpload(@RequestHeader("username") String username, MultipartFile file)  throws Exception{
+        return Result.ok(baseService.avatarUpload(username, file));
+    }
+
+//    @PostMapping("/logout")
+//    public boolean logout(@RequestHeader("username") String username) {
+//        return baseService.logout(username);
+//    }
 }
