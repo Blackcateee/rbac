@@ -87,6 +87,7 @@ public class SecurityConfig {
                         .requestMatchers(WHITE_LIST).permitAll()
                         .requestMatchers("/user").hasAnyRole("ROLE_管理员", "ROLE_会员")
                         .requestMatchers("/role", "/job").hasAnyRole("ROLE_管理员")
+                        .requestMatchers("/tenant").hasAnyRole("ROLE_管理员", "ROLE_商家")
                         .anyRequest().authenticated()
                 // 其他所有资源，通过自定义规则授权
                 //.anyRequest().access((authentication, request) -> securityAuthenticationAccessHandler.check(authentication, request.getRequest()))

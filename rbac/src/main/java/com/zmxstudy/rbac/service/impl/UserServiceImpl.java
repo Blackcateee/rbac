@@ -83,8 +83,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 会员注册,需要添加会员角色
         baseMapper.insertUser(user);
         Long id = baseMapper.selectIdByUsername(user.getUsername());
-        // id为2代表会员角色
-        baseMapper.insertRolesBatch(id, Collections.singletonList(2L));
+        // 1:管理员 2：会员 3：商家
+        baseMapper.insertRolesBatch(id, user.getRoleId());
         return true;
     }
 

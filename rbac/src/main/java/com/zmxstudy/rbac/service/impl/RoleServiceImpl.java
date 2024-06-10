@@ -1,10 +1,13 @@
 package com.zmxstudy.rbac.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zmxstudy.rbac.constant.SecurityConstant;
+import com.zmxstudy.rbac.entity.Auth;
 import com.zmxstudy.rbac.entity.Role;
 import com.zmxstudy.rbac.entity.User;
 import com.zmxstudy.rbac.mapper.RoleMapper;
+import com.zmxstudy.rbac.service.AuthService;
 import com.zmxstudy.rbac.service.RoleService;
 import com.zmxstudy.rbac.util.JwtUtil;
 import com.zmxstudy.rbac.util.RedisUtil;
@@ -29,6 +32,9 @@ import java.util.*;
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role>
         implements RoleService {
 
+    @Resource
+    private AuthService authService;
+
     @Override
     public boolean editRoles(Long roleId, List<Long> authIds) {
         if (Objects.isNull(roleId)) {
@@ -40,6 +46,24 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role>
         baseMapper.deleteAuthsByRoleId(roleId);
         baseMapper.insertRolesBatch(roleId, authIds);
         return true;
+    }
+
+    @Override
+    public List<Role> getRoles(String username) {
+        return baseMapper.selectRoles();
+    }
+
+    @Override
+    public boolean addRole(Role role, List<Long> authIds) {
+        baseMapper.insert(role);
+        role = baseMapper.selectOne(new QueryWrapper<Role>().eq("rolename", role.getRolename()));
+        return baseMapper.insertRolesBatch(role.getId(), authIds);
+    }
+
+    @Override
+    public boolean deleteRole(Long roleId) {
+        baseMapper.deleteAuthsByRoleId(roleId);
+        return baseMapper.deleteById(roleId) > 0;
     }
 }
 
