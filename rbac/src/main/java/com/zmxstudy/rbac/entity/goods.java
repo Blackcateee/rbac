@@ -23,4 +23,6 @@ public class goods {
     private int gprice;
     @TableField(value = "uid")
     private int uid;
+    @TableField(value = "status")
+    private int status;
 }

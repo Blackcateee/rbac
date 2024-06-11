@@ -20,13 +20,13 @@ public interface GoodsServise extends IService<goods> {
     /**
      * 根据查询当前登录商家的ID所对应的所有商品
      *
-     * @return 商户信息集合
+     * @return 商品信息集合
      */
     public List<goods> getGoodByuid(@RequestHeader("uid") int uid) ;
     /**
      * 根据商品的gid查询某种商品信息
      *
-     * @return 商户信息集合
+     * @return 商品信息集合
      */
     public goods getGoodBygid(@RequestHeader("gid") int gid);
     /**
@@ -37,12 +37,30 @@ public interface GoodsServise extends IService<goods> {
      */
     public boolean deleteGoodsBygId(@RequestHeader("gid") int gid) ;
     /**
-     * 商品上架
+     * 商品新增
      *
      * @param goods 商品
      * @return
      */
     public boolean insertGoods(@RequestBody goods goods,@RequestHeader("uid") int uid) ;
+
+    /**
+     * 商品上架
+     *
+     * @param gid 商户ID
+     * @return
+     */
+    public boolean checkin(@RequestHeader("gid") int gid);
+
+
+    /**
+     * 商品下架
+     *
+     * @param gid 商户ID
+     * @return
+     */
+    public boolean checkout(@RequestHeader("gid") int gid);
+
     /**
      * 下架商品
      *

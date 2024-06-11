@@ -50,6 +50,24 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, goods>
     }
 
     @Override
+    public boolean checkin(int gid) {
+        goods good = baseMapper.getGoodBygid(gid);
+        good.setStatus(1);
+        boolean b = baseMapper.updateGoods(good);
+        return b;
+    }
+
+
+    @Override
+    public boolean checkout(int gid) {
+        goods good = baseMapper.getGoodBygid(gid);
+        good.setStatus(0);
+        boolean b = baseMapper.updateGoods(good);
+        return b;
+    }
+
+
+    @Override
     public boolean updateGoods(goods goods) {
         boolean b = baseMapper.updateGoods(goods);
         return b;
