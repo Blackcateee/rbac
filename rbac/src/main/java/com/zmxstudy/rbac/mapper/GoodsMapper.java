@@ -16,31 +16,29 @@ public interface GoodsMapper extends BaseMapper<goods> {
     @Select("SELECT * FROM good")
     List<goods> selectAllByID();
     /**
-     * 根据商户ID查询商户表所有字段
+     * 根据查询当前登录商家的ID所对应的所有商品
      *
-     * @param uid 商户ID
      * @return 商户信息集合
      */
     @Select("SELECT * FROM good WHERE uid=#{uid}")
     List<goods> getGoodByuid(int uid);
     /**
-     * 根据商户ID查询商户表所有字段
+     * 根据商品的gid查询某种商品信息
      *
-     * @param gid 商户ID
      * @return 商户信息集合
      */
     @Select("SELECT * FROM good WHERE uid=#{gid}")
     goods getGoodBygid(int gid);
     /**
-     * 根据商户ID删除商户
+     * 根据商品gid删除商品
      *
-     * @param gid 商户ID
+     * @param gid 商品ID
      * @return
      */
     @Delete("DELETE FROM good WHERE gid=#{gid}")
     boolean deleteGoodsBygId(int gid);
     /**
-     * 新增商户商户
+     * 新增商品
      *
      * @param goods 商户
      * @return
@@ -50,7 +48,7 @@ public interface GoodsMapper extends BaseMapper<goods> {
             "</script>")
     boolean insertGoods(goods goods);
     /**
-     * 编辑商户
+     * 编辑商品
      *
      * @param goods 商户
      * @return

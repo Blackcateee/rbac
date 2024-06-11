@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface GoodsServise extends IService<goods> {
     /**
-     * 根据商户ID查询商户表所有字段
+     * 查询商品表所有字段
      *
-     * @return 商户信息集合
+     * @return 商品信息集合
      */
     public List<goods> getGoodsall();
     /**

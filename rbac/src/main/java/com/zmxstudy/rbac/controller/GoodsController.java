@@ -15,9 +15,9 @@ import java.util.List;
 @RequestMapping("/goods")
 public class GoodsController extends BaseController<GoodsServise, goods> {
     /**
-     * 根据商户ID查询商户表所有字段
+     * 查询商品表所有字段
      *
-     * @return 商户信息集合
+     * @return 商品信息集合
      */
     @GetMapping("/all")
     public List<goods> getGoodsall() {
