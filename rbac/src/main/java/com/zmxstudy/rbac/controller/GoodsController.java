@@ -67,7 +67,7 @@ public class GoodsController extends BaseController<GoodsServise, goods> {
      * @param gid 商户ID
      * @return
      */
-    @PostMapping("/insert")
+    @PostMapping("/shelves")
     public boolean checkin(@RequestHeader("gid") int gid) {
         return baseService.checkin(gid);
     }
@@ -77,7 +77,7 @@ public class GoodsController extends BaseController<GoodsServise, goods> {
      * @param gid 商户ID
      * @return
      */
-    @PostMapping("/insert")
+    @PostMapping("/takeOff")
     public boolean checkout(@RequestHeader("gid") int gid) {
         return baseService.checkout(gid);
     }
