@@ -27,7 +27,9 @@ public class SecurityAuthenticationAccessHandler implements AuthorizationManager
                 .get()
                 .getAuthorities()
                 .stream()
-                .anyMatch((Predicate<GrantedAuthority>) grantedAuthority ->
-                        antPathMatcher.match(grantedAuthority.getAuthority(), request.getRequestURI())));
+                .anyMatch((Predicate<GrantedAuthority>) grantedAuthority -> {
+                            return antPathMatcher.match(grantedAuthority.getAuthority(), request.getRequestURI());
+                        }
+                ));
     }
 }

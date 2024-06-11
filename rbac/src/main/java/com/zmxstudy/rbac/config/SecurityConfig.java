@@ -85,10 +85,9 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorize) -> authorize
                         // 静态资源，无条件允许
                         .requestMatchers(WHITE_LIST).permitAll()
-                        .requestMatchers("/").hasAnyRole("ROLE_管理员")
                         .anyRequest().authenticated()
                 // 其他所有资源，通过自定义规则授权
-                //.anyRequest().access((authentication, request) -> securityAuthenticationAccessHandler.check(authentication, request.getRequest()))
+//                .anyRequest().access((authentication, request) -> securityAuthenticationAccessHandler.check(authentication, request.getRequest()))
         );
         // 添加自定义认证过滤器
         http.addFilterBefore(
