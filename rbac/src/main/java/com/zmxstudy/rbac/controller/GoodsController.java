@@ -44,7 +44,7 @@ public class GoodsController extends BaseController<GoodsServise, goods> {
     /**
      * 根据商品gid删除商品
      *
-     * @param gid 商户ID
+     * @param gid 商品ID
      * @return
      */
     @DeleteMapping("/delbyid")
@@ -52,9 +52,9 @@ public class GoodsController extends BaseController<GoodsServise, goods> {
         return baseService.deleteGoodsBygId(gid);
     }
     /**
-     * 商品上架
+     * 商品新增
      *
-     * @param goods 商品
+     * @param goods 商品新增
      * @return
      */
     @PostMapping("/insert")
@@ -62,7 +62,29 @@ public class GoodsController extends BaseController<GoodsServise, goods> {
         return baseService.insertGoods(goods,uid);
     }
     /**
-     * 下架商品
+     * 商品上架
+     *
+     * @param gid 商户ID
+     * @return
+     */
+    @PostMapping("/insert")
+    public boolean checkin(@RequestHeader("gid") int gid) {
+        return baseService.checkin(gid);
+    }
+    /**
+     * 商品下架
+     *
+     * @param gid 商户ID
+     * @return
+     */
+    @PostMapping("/insert")
+    public boolean checkout(@RequestHeader("gid") int gid) {
+        return baseService.checkout(gid);
+    }
+
+
+    /**
+     * 商品编辑
      *
      * @param goods 商品
      * @return

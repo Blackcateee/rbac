@@ -47,6 +47,7 @@ public interface GoodsMapper extends BaseMapper<goods> {
             "INSERT INTO good(gname,gphoto,gnum,gprice,uid) VALUES (#{gname},#{gphoto},#{gnum},#{gprice},#{uid})" +
             "</script>")
     boolean insertGoods(goods goods);
+
     /**
      * 编辑商品
      *
