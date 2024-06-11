@@ -6,6 +6,7 @@ import com.zmxstudy.rbac.entity.goods;
 import com.zmxstudy.rbac.entity.tenant;
 import com.zmxstudy.rbac.mapper.GoodsMapper;
 import com.zmxstudy.rbac.service.GoodsServise;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -13,12 +14,9 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
 
+@Component
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, goods>
         implements GoodsServise {
-
-
-    {
-}
 
     @Override
     public List<goods> getGoodsall() {

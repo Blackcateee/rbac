@@ -3,10 +3,12 @@ package com.zmxstudy.rbac.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zmxstudy.rbac.entity.goods;
 import com.zmxstudy.rbac.entity.tenant;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+
 
 public interface GoodsServise extends IService<goods> {
     /**
