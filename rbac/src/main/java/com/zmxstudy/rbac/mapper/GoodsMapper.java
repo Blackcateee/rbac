@@ -58,4 +58,8 @@ public interface GoodsMapper extends BaseMapper<goods> {
             "UPDATE SET good gname=#{gname},gphoto=#{gphoto},gnum=#{gnum},gprice={gprice},uid={uid}" +
             "</script>")
     boolean updateGoods(goods goods);
+
+
+    @Select("SELECT * FROM goods WHERE name LIKE CONCAT('%', #{gname}, '%')")
+    List<goods> getGoodsByname(@Param("name") String name);
 }
