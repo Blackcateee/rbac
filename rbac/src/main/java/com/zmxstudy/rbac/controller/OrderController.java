@@ -36,4 +36,5 @@ public class OrderController extends BaseController<orderService,order> {
     public List<goods> getorder(@RequestHeader("uid") int uid) {
         return baseService.getorder(uid);
     }
+
 }
