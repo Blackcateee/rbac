@@ -23,6 +23,11 @@ public class goods {
     private int gprice;
     @TableField(value = "uid")
     private int uid;
+
+    public void setUid1(int uid) {
+        this.uid = uid;
+    }
+
     @TableField(value = "status")
     private int status;
 }

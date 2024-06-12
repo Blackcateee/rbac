@@ -44,7 +44,10 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, goods>
 
     @Override
     public boolean insertGoods(goods goods,int uid) {
-        goods.setUid(uid);
+        System.out.println(uid);
+        goods.setStatus(0);
+        goods.setUid1(uid);
+        System.out.println(goods);
         boolean register=baseMapper.insertGoods(goods);
         return register;
     }
@@ -73,16 +76,12 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, goods>
         return b;
     }
 
-    public String avatarUpload(String goodsname, MultipartFile file) throws Exception{
+    public String avatarUpload(MultipartFile file) throws Exception{
         InputStream inputStream = file.getInputStream();
-        File avatar = new File("D:\\workspace\\rbac\\rbac\\src\\main\\resources\\static\\upload\\avatar\\" + goodsname + ".jpg");
+        File avatar = new File("D:\\workspace\\rbac\\rbac\\src\\main\\resources\\static\\upload\\avatar\\" + "goods" + ".jpg");
         FileOutputStream fileOutputStream = new FileOutputStream(avatar);
         fileOutputStream.write(inputStream.readAllBytes());
         fileOutputStream.close();
-        goods g= new goods();
-        g.setGname(goodsname);
-        g.setGphoto("rbac/rbac/src/main/resources/static/upload/avatar/" + goodsname + ".jpg");
-        baseMapper.updateGoods(g);
-        return "rbac/rbac/src/main/resources/static/upload/avatar/" + goodsname + ".jpg";
+        return "rbac/rbac/src/main/resources/static/upload/avatar/" + "goods" + ".jpg";
     }
 }

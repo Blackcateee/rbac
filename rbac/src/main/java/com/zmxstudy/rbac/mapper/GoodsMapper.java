@@ -27,7 +27,7 @@ public interface GoodsMapper extends BaseMapper<goods> {
      *
      * @return 商户信息集合
      */
-    @Select("SELECT * FROM good WHERE uid=#{gid}")
+    @Select("SELECT * FROM good WHERE gid=#{gid}")
     goods getGoodBygid(int gid);
     /**
      * 根据商品gid删除商品
@@ -40,22 +40,32 @@ public interface GoodsMapper extends BaseMapper<goods> {
     /**
      * 新增商品
      *
-     * @param goods 商户
+     * @param good 商户
      * @return
      */
-    @Insert("<script>" +
-            "INSERT INTO good(gname,gphoto,gnum,gprice,uid) VALUES (#{gname},#{gphoto},#{gnum},#{gprice},#{uid})" +
-            "</script>")
-    boolean insertGoods(goods goods);
+    @Insert("insert into " +
+            "good(gname, gphoto, gnum, gprice,status,uid)" +
+            "values(#{gname}, #{gphoto}, #{gnum}, #{gprice},#{status},#{uid})")
+    boolean insertGoods(goods good);
 
     /**
      * 编辑商品
-     *
+     *a
      * @param goods 商户
      * @return
      */
-    @Update("<script>" +
-            "UPDATE SET good gname=#{gname},gphoto=#{gphoto},gnum=#{gnum},gprice={gprice},uid={uid}" +
-            "</script>")
+    @Update({
+            "<script>",
+            "update good",
+            "<set>",
+            "<if test='gname != null'>gname = #{gname},</if>",
+            "<if test='gphoto != null'>gphoto = #{gphoto},</if>",
+            "<if test='gnum != null'>gnum = #{gnum},</if>",
+            "<if test='gprice != null'>gprice = #{gprice},</if>",
+            "<if test='status != null'>status = #{status}</if>",
+            "</set>",
+            "where gid = #{gid}", // 假设你有一个id字段来定位要更新的记录
+            "</script>"
+    })
     boolean updateGoods(goods goods);
 }

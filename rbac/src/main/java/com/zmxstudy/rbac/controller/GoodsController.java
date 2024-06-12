@@ -54,12 +54,12 @@ public class GoodsController extends BaseController<GoodsServise, goods> {
     /**
      * 商品新增
      *
-     * @param goods 商品新增
+     * @param good 商品新增
      * @return
      */
     @PostMapping("/insert")
-    public boolean insertGoods(@RequestBody goods goods,@RequestHeader("uid") int uid) {
-        return baseService.insertGoods(goods,uid);
+    public boolean insertGoods(@RequestBody goods good,@RequestHeader("uid") int uid) {
+        return baseService.insertGoods(good,uid);
     }
     /**
      * 商品上架
@@ -86,16 +86,16 @@ public class GoodsController extends BaseController<GoodsServise, goods> {
     /**
      * 商品编辑
      *
-     * @param goods 商品
+     * @param good 商品
      * @return
      */
     @PostMapping("/update")
-    public boolean updateTenant(@RequestBody goods goods) {
-        return baseService.updateGoods(goods);
+    public boolean updateTenant(@RequestBody goods good) {
+        return baseService.updateGoods(good);
     }
 
     @PostMapping("/avatarUpload")
-    public Result<String> avatarUpload(@RequestHeader("goodsname") String goodsname, MultipartFile file)  throws Exception{
-        return Result.ok(baseService.avatarUpload(goodsname, file));
+    public Result<String> avatarUpload( MultipartFile file)  throws Exception{
+        return Result.ok(baseService.avatarUpload(file));
     }
 }

@@ -39,10 +39,10 @@ public interface GoodsServise extends IService<goods> {
     /**
      * 商品新增
      *
-     * @param goods 商品
+     * @param good 商品
      * @return
      */
-    public boolean insertGoods(@RequestBody goods goods,@RequestHeader("uid") int uid) ;
+    public boolean insertGoods(@RequestBody goods good,@RequestHeader("uid") int uid) ;
 
     /**
      * 商品上架
@@ -64,11 +64,11 @@ public interface GoodsServise extends IService<goods> {
     /**
      * 下架商品
      *
-     * @param goods 商品
+     * @param good 商品
      * @return
      */
-    public boolean updateGoods(@RequestBody goods goods);
+    public boolean updateGoods(@RequestBody goods good);
 
-    String avatarUpload(String goodsname, MultipartFile file)  throws Exception;
+    String avatarUpload(MultipartFile file)  throws Exception;
 
 }
