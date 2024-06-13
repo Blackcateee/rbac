@@ -97,6 +97,6 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, goods>
             }
         }).start();
         inputStream.close();
-        return "D:/workspace/rbac/rbac/src/main/resources/static/upload/avatar/" + string + ".jpg";
+        return "/upload/avatar/" + string + ".jpg";
     }
 }
