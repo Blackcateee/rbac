@@ -105,9 +105,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         fileOutputStream.close();
         User user = new User();
         user.setUsername(userName);
-        user.setAvatarPath("D:/workspace/rbac/rbac/src/main/resources/static/upload/avatar/" + userName + ".jpg");
+        user.setAvatarPath("rbac/rbac/src/main/resources/static/upload/avatar/" + userName + ".jpg");
         baseMapper.editUser(user);
-        return "D:/workspace/rbac/rbac/src/main/resources/static/upload/avatar/" + userName + ".jpg";
+        return "rbac/rbac/src/main/resources/static/upload/avatar/" + userName + ".jpg";
     }
 
     @Override

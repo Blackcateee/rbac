@@ -9,10 +9,9 @@ import com.zmxstudy.rbac.service.GoodsServise;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, goods>
@@ -77,11 +76,27 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, goods>
     }
 
     public String avatarUpload(MultipartFile file) throws Exception{
+        String string = UUID.randomUUID().toString().replaceAll("-", "");
         InputStream inputStream = file.getInputStream();
-        File avatar = new File("D:\\workspace\\rbac\\rbac\\src\\main\\resources\\static\\upload\\avatar\\" + "goods" + ".jpg");
+        File avatar = new File("D:\\workspace\\rbac\\rbac\\src\\main\\resources\\static\\upload\\avatar\\" + string + ".jpg");
         FileOutputStream fileOutputStream = new FileOutputStream(avatar);
         fileOutputStream.write(inputStream.readAllBytes());
         fileOutputStream.close();
-        return "rbac/rbac/src/main/resources/static/upload/avatar/" + "goods" + ".jpg";
+        new Thread(() -> {
+            while (true) {
+                if (avatar.canRead()) {
+                    try {
+                        FileInputStream fileInputStream = new FileInputStream(avatar);
+                        fileInputStream.close();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    } finally {
+                        break;
+                    }
+                }
+            }
+        }).start();
+        inputStream.close();
+        return "/upload/avatar/" + string + ".jpg";
     }
 }

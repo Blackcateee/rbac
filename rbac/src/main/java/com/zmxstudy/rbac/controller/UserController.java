@@ -73,8 +73,8 @@ public class UserController extends BaseController<UserService, User> {
     }
 
     @PostMapping("/avatarUpload")
-    public Result<String> avatarUpload(@RequestHeader("username") String username, MultipartFile file)  throws Exception{
-        return Result.ok(baseService.avatarUpload(username, file));
+    public Result<String> avatarUpload( MultipartFile file)  throws Exception{
+        return Result.ok(baseService.avatarUpload(file));
     }
 
 //    @PostMapping("/logout")

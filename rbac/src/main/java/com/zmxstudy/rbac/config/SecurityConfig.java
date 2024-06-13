@@ -26,7 +26,8 @@ public class SecurityConfig {
     public static final String LOGIN_URI = "/login";
     public static final String[] WHITE_LIST = new String[]{
             "/static/**", "/error", "/user/registerUser","/goods/avatarUpload","/user/avatarUpload",
-            "/actuator/health", "/actuator/info", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**"
+            "/actuator/health", "/actuator/info", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**",
+            "/swagger-resources/**", "/index.html", "/upload/avatar/**"
     };
 
     /**
@@ -85,6 +86,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorize) -> authorize
                         // 静态资源，无条件允许
                         .requestMatchers(WHITE_LIST).permitAll()
+//                        .requestMatchers("/*").hasAnyRole("ROLE_管理员")
                         .anyRequest().authenticated()
                 // 其他所有资源，通过自定义规则授权
 //                .anyRequest().access((authentication, request) -> securityAuthenticationAccessHandler.check(authentication, request.getRequest()))

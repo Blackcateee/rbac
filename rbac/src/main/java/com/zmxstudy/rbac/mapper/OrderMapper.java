@@ -17,10 +17,8 @@ public interface OrderMapper extends BaseMapper<order> {
      * @param order 订单
      * @return
      */
-    @Insert("<script>" +
-            "INSERT INTO order(gid,uid) VALUES (#{gid},#{uid})" +
-            "</script>")
-    boolean insertOrder(@Param("order") order order);
+    @Insert("INSERT INTO `order`(gid, uid) VALUES (#{gid}, #{uid})")
+    boolean insertOrder(order order);
 
 
     /**

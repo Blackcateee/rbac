@@ -23,6 +23,8 @@ public class OrderController extends BaseController<orderService,order> {
      */
     @PostMapping("/add")
     public boolean insertOrder(@RequestHeader("uid") int uid,@RequestHeader("gid") int gid) {
+        System.out.println(uid);
+        System.out.println(gid);
         return baseService.insertOrder(uid,gid);
     }
 

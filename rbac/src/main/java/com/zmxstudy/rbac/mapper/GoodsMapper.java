@@ -70,6 +70,6 @@ public interface GoodsMapper extends BaseMapper<goods> {
     boolean updateGoods(goods goods);
 
 
-    @Select("SELECT * FROM goods WHERE name LIKE CONCAT('%', #{gname}, '%')")
+    @Select("SELECT * FROM good WHERE gname LIKE CONCAT('%', #{name}, '%')")
     List<goods> getGoodsByname(@Param("name") String name);
 }

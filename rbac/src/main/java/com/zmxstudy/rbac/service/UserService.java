@@ -50,7 +50,7 @@ public interface UserService extends IService<User> {
 
     boolean editUser(User user);
 
-    String avatarUpload(String userName, MultipartFile file)  throws Exception;
+    String avatarUpload(MultipartFile file)  throws Exception;
 
     boolean logout(String username);
 }

@@ -7,27 +7,18 @@ import com.zmxstudy.rbac.mapper.GoodsMapper;
 import com.zmxstudy.rbac.service.GoodsServise;
 import com.zmxstudy.rbac.service.TenantServise;
 import com.zmxstudy.rbac.vo.Result;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 @RequestMapping("/goods")
 public class GoodsController extends BaseController<GoodsServise, goods> {
+
     @Resource
     private GoodsMapper goodsMapper;
-    /**
-     * 根据商品名称查询商品
-     *
-     * @return 商品信息集合
-     */
-    @GetMapping("/byname")
-    public List<goods> gatGoodsByname(String name){
-        return goodsMapper.getGoodsByname(name);
-    }
-
 
     /**
      * 查询商品表所有字段
@@ -112,5 +103,15 @@ public class GoodsController extends BaseController<GoodsServise, goods> {
     @PostMapping("/avatarUpload")
     public Result<String> avatarUpload( MultipartFile file)  throws Exception{
         return Result.ok(baseService.avatarUpload(file));
+    }
+
+    /**
+     * 根据商品名称查询商品
+     *
+     * @return 商品信息集合
+     */
+    @GetMapping("/byname")
+    public List<goods> gatGoodsByname(@RequestParam("name") String name){
+        return goodsMapper.getGoodsByname(name);
     }
 }

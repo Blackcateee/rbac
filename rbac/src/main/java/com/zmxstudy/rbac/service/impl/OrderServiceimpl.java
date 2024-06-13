@@ -18,6 +18,7 @@ public class OrderServiceimpl extends ServiceImpl<OrderMapper, order>
         order o=new order();
         o.setUid(uid);
         o.setGid(gid);
+        System.out.println(o);
         boolean b = baseMapper.insertOrder(o);
         return b;
     }
