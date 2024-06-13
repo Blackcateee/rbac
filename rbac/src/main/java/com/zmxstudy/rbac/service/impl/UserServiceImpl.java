@@ -98,16 +98,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Override
     public String avatarUpload(String userName, MultipartFile file) throws Exception{
+        String string = UUID.randomUUID().toString().replaceAll("-", "");
         InputStream inputStream = file.getInputStream();
-        File avatar = new File("D:\\workspace\\rbac\\rbac\\src\\main\\resources\\static\\upload\\avatar\\" + userName + ".jpg");
+        File avatar = new File("D:\\workspace\\rbac\\rbac\\src\\main\\resources\\static\\upload\\avatar\\" + string + ".jpg");
         FileOutputStream fileOutputStream = new FileOutputStream(avatar);
         fileOutputStream.write(inputStream.readAllBytes());
         fileOutputStream.close();
-        User user = new User();
-        user.setUsername(userName);
-        user.setAvatarPath("rbac/rbac/src/main/resources/static/upload/avatar/" + userName + ".jpg");
-        baseMapper.editUser(user);
-        return "rbac/rbac/src/main/resources/static/upload/avatar/" + userName + ".jpg";
+        new Thread(() -> {
+            while (true) {
+                if (avatar.canRead()) {
+                    try {
+                        FileInputStream fileInputStream = new FileInputStream(avatar);
+                        fileInputStream.close();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    } finally {
+                        break;
+                    }
+                }
+            }
+        }).start();
+        inputStream.close();
+        return "D:/workspace/rbac/rbac/src/main/resources/static/upload/avatar/" + string + ".jpg";
     }
 
     @Override
